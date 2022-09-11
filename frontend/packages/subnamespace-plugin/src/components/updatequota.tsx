@@ -47,26 +47,30 @@ const UpdatequotaTableHeader = () => {
       props: { className: tableColumnClasses[1] },
     },
     {
+      title: 'Description',
+      props: { className: tableColumnClasses[2] },
+    },
+    {
       title: 'Status',
       sortField: 'status.phase',
       transforms: [sortable],
-      props: { className: tableColumnClasses[2] },
+      props: { className: tableColumnClasses[3] },
     },
     {
       title: 'Message',
       sortField: 'status.reason',
       transforms: [sortable],
-      props: { className: tableColumnClasses[3] },
+      props: { className: tableColumnClasses[4] },
     },
     {
       title: 'Created',
       sortField: 'metadata.creationTimestamp',
       transforms: [sortable],
-      props: { className: tableColumnClasses[4] },
+      props: { className: tableColumnClasses[5] },
     },
     {
       title: '',
-      props: { className: tableColumnClasses[5] },
+      props: { className: tableColumnClasses[6] },
     },
   ];
 };
@@ -82,15 +86,18 @@ const UpdatequotaTableRow: RowFunction<K8sResourceKind> = ({ obj, index, key, st
         <ResourceLink kind="Namespace" name={obj.spec.destns} />
       </TableData>
       <TableData className={classNames(tableColumnClasses[2], 'co-break-word')}>
-        <Status status={obj.status?.phase} />
+        {obj.metadata.annotations ? obj.metadata.annotations['dana.hns.io/description'] : ''}
       </TableData>
       <TableData className={classNames(tableColumnClasses[3], 'co-break-word')}>
-        <Status status={obj.status?.reason} />
+        <Status status={obj.status?.phase} />
       </TableData>
       <TableData className={classNames(tableColumnClasses[4], 'co-break-word')}>
+        <Status status={obj.status?.reason} />
+      </TableData>
+      <TableData className={classNames(tableColumnClasses[5], 'co-break-word')}>
         <Timestamp timestamp={obj.metadata.creationTimestamp} />
       </TableData>
-      <TableData className={tableColumnClasses[5]}>
+      <TableData className={tableColumnClasses[6]}>
         <ResourceKebab
           actions={menuActions}
           kind={referenceForModel(UpdatequotaModel)}

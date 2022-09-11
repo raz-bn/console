@@ -72,9 +72,8 @@ export const SnsChildernsTable: React.FC<SnsChildernsTableProps> = ({ father, sn
         <div className="col-lg-1 hidden-md hidden-sm hidden-xs">Pods</div>
       </div>
       <div className="co-m-table-grid__body">
-        {snsChildrens.map((ns: any, i: number) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <NamespaceRow key={i} namespace={ns} father={father} />
+        {snsChildrens.map((ns: any) => (
+          <NamespaceRow namespace={ns} father={father} />
         ))}
       </div>
     </div>

@@ -25,6 +25,7 @@ import {
 import { referenceForModel } from '../../module/k8s';
 import { HrefLink, ResourceNSLink, ResourceClusterLink } from './items';
 import { NavSection } from './section';
+import { SubnamespaceModel, UpdatequotaModel } from '@console/subnamespace-plugin/src/models';
 
 type SeparatorProps = {
   name: string;
@@ -208,12 +209,28 @@ const AdminNav = () => {
       </NavSection>
 
       <NavSection title="Wallets" id="wallets" data-quickstart-id="qs-nav-wallets">
-        <ResourceNSLink
+        <HrefLink
           id="subnamespaces"
-          resource="subnamespaces"
+          href={formatNamespacedRouteForResource(
+            referenceForModel(SubnamespaceModel),
+            lastNamespace,
+          )}
           name={t('public~Subnamespaces')}
         />
-        <ResourceNSLink id="updatequotas" resource="updatequotas" name={t('public~Update Quota')} />
+        {/*<ResourceNSLink*/}
+        {/*  id="subnamespace"*/}
+        {/*  resource="subnamespaces"*/}
+        {/*  name={t('public~Subnamespaces')}*/}
+        {/*/>*/}
+        <HrefLink
+          id="updatequotas"
+          href={formatNamespacedRouteForResource(
+            referenceForModel(UpdatequotaModel),
+            lastNamespace,
+          )}
+          name={t('public~Update Quota')}
+        />
+        {/*<ResourceNSLink id="updatequotas" resource="updatequotas" name={t('public~Update Quota')} />*/}
       </NavSection>
 
       <NavSection id="storage" title={t('public~Storage')} data-quickstart-id="qs-nav-storage">

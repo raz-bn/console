@@ -13,6 +13,7 @@ type State = {
   storageValue: string;
   progress: boolean;
   error: string;
+  description: string;
   payload: K8sResourceKind;
 };
 
@@ -28,6 +29,7 @@ export const defaultState = {
   storageValue: '',
   storageUnit: 'Gi',
   progress: false,
+  description: '',
   error: '',
   payload: {},
 };
@@ -46,7 +48,8 @@ type Action =
   | { type: 'setMemoryUnit'; memoryUnit: string }
   | { type: 'setMemoryValue'; memoryValue: string }
   | { type: 'setStorageUnit'; storageUnit: string }
-  | { type: 'setStorageValue'; storageValue: string };
+  | { type: 'setStorageValue'; storageValue: string }
+  | { type: 'setDescription'; description: string };
 
 export const commonReducer = (state: State, action: Action) => {
   switch (action.type) {
@@ -78,6 +81,9 @@ export const commonReducer = (state: State, action: Action) => {
       return Object.assign({}, state, { storageValue: action.storageValue });
     case 'setPayload':
       return Object.assign({}, state, { payload: action.payload });
+    case 'setDescription':
+      return Object.assign({}, state, { description: action.description });
+
     default:
       return defaultState;
   }

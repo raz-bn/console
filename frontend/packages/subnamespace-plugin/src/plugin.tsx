@@ -10,19 +10,21 @@ import {
   HorizontalNavTab,
 } from '@console/plugin-sdk';
 
+// import { YAMLTemplate } from '@console/dynamic-plugin-sdk';
+
 // TODO(vojtech): internal code needed by plugins should be moved to console-shared package
 // import { PodModel } from '@console/internal/models';
 import { referenceForModel } from '@console/internal/module/k8s';
 
-import { yamlTemplates } from './yaml-templates';
-
+// import { yamlTemplates } from './yaml-templates';
+//
 type ConsumedExtensions =
   | ModelDefinition
   | ModelFeatureFlag
   | ResourceListPage
   | ResourceDetailsPage
   | Perspective
-  | YAMLTemplate
+  // | YAMLTemplate
   | RoutePage
   | HorizontalNavTab;
 
@@ -55,26 +57,26 @@ const plugin: Plugin<ConsumedExtensions> = [
       flag: 'UPDATEQUOTA',
     },
   },
-  {
-    type: 'NavItem/ResourceNS',
-    properties: {
-      section: 'Wallets',
-      componentProps: {
-        name: models.SubnamespaceModel.labelPlural,
-        resource: referenceForModel(models.SubnamespaceModel),
-      },
-    },
-  },
-  {
-    type: 'NavItem/ResourceNS',
-    properties: {
-      section: 'Wallets',
-      componentProps: {
-        name: models.UpdatequotaModel.label,
-        resource: referenceForModel(models.UpdatequotaModel),
-      },
-    },
-  },
+  // {
+  //   type: 'NavItem/ResourceNS',
+  //   properties: {
+  //     section: 'Wallets',
+  //     componentProps: {
+  //       name: models.SubnamespaceModel.labelPlural,
+  //       resource: referenceForModel(models.SubnamespaceModel),
+  //     },
+  //   },
+  // },
+  // {
+  //   type: 'NavItem/ResourceNS',
+  //   properties: {
+  //     section: 'Wallets',
+  //     componentProps: {
+  //       name: models.UpdatequotaModel.label,
+  //       resource: referenceForModel(models.UpdatequotaModel),
+  //     },
+  //   },
+  // },
   {
     type: 'Page/Resource/List',
     properties: {
@@ -95,13 +97,13 @@ const plugin: Plugin<ConsumedExtensions> = [
         ),
     },
   },
-  {
-    type: 'YAMLTemplate',
-    properties: {
-      model: models.SubnamespaceModel,
-      template: yamlTemplates.getIn([models.SubnamespaceModel, 'default']),
-    },
-  },
+  // {
+  //   type: 'YAMLTemplate',
+  //   properties: {
+  //     model: models.SubnamespaceModel,
+  //     template: yamlTemplates.getIn([models.SubnamespaceModel, 'default']),
+  //   },
+  // },
   {
     type: 'Page/Route',
     properties: {
@@ -127,13 +129,13 @@ const plugin: Plugin<ConsumedExtensions> = [
         ),
     },
   },
-  {
-    type: 'YAMLTemplate',
-    properties: {
-      model: models.UpdatequotaModel,
-      template: yamlTemplates.getIn([models.UpdatequotaModel, 'default']),
-    },
-  },
+  // {
+  //   type: 'console.yaml-template',
+  //   properties: {
+  //     model: models.UpdatequotaModel,
+  //     template: yamlTemplates.getIn([models.UpdatequotaModel, 'default']),
+  //   },
+  // },
   {
     type: 'Page/Route',
     properties: {

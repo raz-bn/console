@@ -53,6 +53,9 @@ export const CreateUpdateQuotaPage: React.FC<CreateUpdateQuotaPageProps> = (prop
       metadata: {
         name: `${Date.now()}`,
         namespace: state.sourcens,
+        annotations: {
+          'dana.hns.io/description': state.description,
+        },
       },
       spec: {
         sourcens: state.sourcens,
@@ -81,6 +84,7 @@ export const CreateUpdateQuotaPage: React.FC<CreateUpdateQuotaPageProps> = (prop
     state.storageUnit,
     state.storageValue,
     state.cpu,
+    state.description,
   ]);
 
   const save = (e: React.FormEvent<EventTarget>) => {
@@ -152,6 +156,24 @@ export const CreateUpdateQuotaPage: React.FC<CreateUpdateQuotaPageProps> = (prop
               onChange={(value) => dispatch({ type: 'setDestns', destns: value })}
               id="ns-dropdown"
             />
+          </div>
+        </Section>
+
+        <Section label="Description">
+          <div className="form-group">
+            <input
+              className="pf-c-form-control"
+              type="text"
+              onChange={(e) => {
+                dispatch({ type: 'setDescription', description: e.currentTarget.value });
+              }}
+              aria-describedby="uq-description-help"
+              id="uq-description"
+              name="uqDescription"
+            />
+            <p className="help-block" id="pvc-name-help">
+              A description for the transaction
+            </p>
           </div>
         </Section>
 

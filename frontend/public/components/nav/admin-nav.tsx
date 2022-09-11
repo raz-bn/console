@@ -207,6 +207,15 @@ const AdminNav = () => {
         />
       </NavSection>
 
+      <NavSection title="Wallets" id="wallets" data-quickstart-id="qs-nav-wallets">
+        <ResourceNSLink
+          id="subnamespaces"
+          resource="subnamespaces"
+          name={t('public~Subnamespaces')}
+        />
+        <ResourceNSLink id="updatequotas" resource="updatequotas" name={t('public~Update Quota')} />
+      </NavSection>
+
       <NavSection id="storage" title={t('public~Storage')} data-quickstart-id="qs-nav-storage">
         <ResourceClusterLink
           id="persistentvolumes"

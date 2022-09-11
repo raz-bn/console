@@ -16,6 +16,7 @@ require (
 	github.com/rawagner/graphql-transport-ws v0.0.0-20200817140314-dcfbf0388067
 	golang.org/x/net v0.0.0-20201110031124-69a78807bb2b
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
+	golang.org/x/sys v0.0.0-20220907062415-87db552b00fd // indirect
 	gopkg.in/square/go-jose.v2 v2.4.1 // indirect
 	gopkg.in/yaml.v2 v2.3.0
 	helm.sh/helm/v3 v3.5.0

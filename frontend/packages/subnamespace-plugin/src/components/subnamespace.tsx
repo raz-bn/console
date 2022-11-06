@@ -12,27 +12,17 @@ import {
 } from '@console/internal/components/factory';
 import { ClusterResourceQuotasPage } from '@console/internal/components/cluster-resource-quota';
 import Dashboard from '@console/shared/src/components/dashboard/Dashboard';
-// import DashboardGrid from '@console/shared/src/components/dashboard/DashboardGrid';
 import { UtilizationCard } from './dashboards/utilization-card';
 import { ResourceQuotaCard } from './resource-quota-card';
 import { DetailsCard } from './dashboards/details-card';
 import { StatusCard } from './dashboards/status-card';
 import { SnsDashboardContext } from './dashboards/sns-dashboard-context';
-// import { useRefWidth } from '@console/internal/components/utils/ref-width-hook';
 import { Grid, GridItem } from '@patternfly/react-core';
 import { DashboardCardSpan } from '@console/plugin-sdk';
-// import { useK8sWatchResource, WatchK8sResource } from '@console/internal/components/utils/k8s-watch-hook';
-// import { Route } from 'react-router-dom';
-
-// import { CreateUpdateQuotaPage } from '../components/create-updatequota';
-// import { CreateMigrationHierarchyPage } from '../components/create-migrationhierarchy';
-// import { DetailsForKind } from '@console/internal/components/default-resource';
 import {
   Kebab,
   ResourceKebab,
   ResourceLink,
-  // ResourceSummary,
-  // SectionHeading,
   navFactory,
   Timestamp,
   resourcePathFromModel,
@@ -40,7 +30,7 @@ import {
 import { K8sResourceKind, referenceForModel } from '@console/internal/module/k8s';
 import { SubnamespaceModel } from '../models';
 
-import { ClusterResourceQuotaModel } from '@console/internal/models';
+import { ClusterResourceQuotaModel, ResourceQuotaModel } from '@console/internal/models';
 
 const { common } = Kebab.factory;
 const menuActions = [...Kebab.getExtensionsActionsForKind(ClusterResourceQuotaModel), ...common];
@@ -132,10 +122,14 @@ const SubnamespaceTableRow: RowFunction<K8sResourceKind> = ({ obj, index, key, s
       </TableData>
       <TableData className={classNames(tableColumnClasses[2], 'co-break-word')}>
         {obj.spec.resourcequota?.hard?.cpu ? (
-          <ResourceLink
-            kind={referenceForModel(ClusterResourceQuotaModel)}
-            name={obj.metadata.name}
-          />
+          obj.metadata.labels['dana.hns.io/rq'] !== 'true' ? (
+            <ResourceLink
+              kind={referenceForModel(ClusterResourceQuotaModel)}
+              name={obj.metadata.name}
+            />
+          ) : (
+            <ResourceLink kind={referenceForModel(ResourceQuotaModel)} name={obj.metadata.name} />
+          )
         ) : (
           '-'
         )}

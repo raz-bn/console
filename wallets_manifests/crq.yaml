@@ -1,0 +1,56 @@
+kind: ClusterResourceQuota
+apiVersion: quota.openshift.io/v1
+metadata:
+  name: root
+spec:
+  quota:
+    hard:
+      cpu: '10000'
+      memory: 8000Gi
+      pods: 10000
+  selector:
+    annotations:
+      dna.hns.io/crq-selector-0: root
+---
+kind: ClusterResourceQuota
+apiVersion: quota.openshift.io/v1
+metadata:
+  name: parent
+spec:
+  quota:
+    hard:
+      cpu: '1000'
+      memory: 800Gi
+      pods: 1000
+  selector:
+    annotations:
+      dna.hns.io/crq-selector-1: parent
+---
+kind: ClusterResourceQuota
+apiVersion: quota.openshift.io/v1
+metadata:
+  name: child
+spec:
+  quota:
+    hard:
+      cpu: '100'
+      memory: 80Gi
+      pods: 100
+  selector:
+    annotations:
+      dna.hns.io/crq-selector-2: child
+
+---
+kind: ClusterResourceQuota
+apiVersion: quota.openshift.io/v1
+metadata:
+  name: child
+spec:
+  quota:
+    hard:
+      cpu: '100'
+      memory: 80Gi
+      pods: 100
+  selector:
+    annotations:
+      dna.hns.io/crq-selector-2: child

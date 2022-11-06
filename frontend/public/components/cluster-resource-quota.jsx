@@ -26,6 +26,7 @@ import { GaugeChart } from './graphs/gauge';
 // import { LoadingBox } from './utils/status-box';
 import { referenceForModel } from '../module/k8s';
 import { ClusterResourceQuotaModel } from '../models';
+import { getQuotaResourceTypes } from './resource-quota';
 
 const ClusterResourceQuotaReference = referenceForModel(ClusterResourceQuotaModel);
 
@@ -67,8 +68,13 @@ const quotaScopes = Object.freeze({
   },
 });
 
-export const getQuotaResourceTypes = (quota) => {
+export const getCrqQuotaResourceTypes = (quota) => {
   const specHard = _.get(quota, 'spec.quota.hard');
+  return _.keys(specHard).sort();
+};
+
+export const getRqQuotaResourceTypes = (quota) => {
+  const specHard = _.get(quota, 'spec.hard');
   return _.keys(specHard).sort();
 };
 

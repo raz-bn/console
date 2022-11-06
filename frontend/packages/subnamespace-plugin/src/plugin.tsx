@@ -57,26 +57,6 @@ const plugin: Plugin<ConsumedExtensions> = [
       flag: 'UPDATEQUOTA',
     },
   },
-  // {
-  //   type: 'NavItem/ResourceNS',
-  //   properties: {
-  //     section: 'Wallets',
-  //     componentProps: {
-  //       name: models.SubnamespaceModel.labelPlural,
-  //       resource: referenceForModel(models.SubnamespaceModel),
-  //     },
-  //   },
-  // },
-  // {
-  //   type: 'NavItem/ResourceNS',
-  //   properties: {
-  //     section: 'Wallets',
-  //     componentProps: {
-  //       name: models.UpdatequotaModel.label,
-  //       resource: referenceForModel(models.UpdatequotaModel),
-  //     },
-  //   },
-  // },
   {
     type: 'Page/Resource/List',
     properties: {
@@ -97,22 +77,11 @@ const plugin: Plugin<ConsumedExtensions> = [
         ),
     },
   },
-  // {
-  //   type: 'YAMLTemplate',
-  //   properties: {
-  //     model: models.SubnamespaceModel,
-  //     template: yamlTemplates.getIn([models.SubnamespaceModel, 'default']),
-  //   },
-  // },
   {
     type: 'Page/Route',
     properties: {
       exact: true,
       path: `/k8s/ns/:ns/${referenceForModel(models.SubnamespaceModel)}/~new/form`,
-      // render: () =>
-      //   import('./components/subnamespace-form' /* webpackChunkName: "subnamespace-form" */).then(
-      //     (m) => m.CreateSNSForm,
-      //   ),
       loader: () =>
         import('./components/create-sns' /* webpackChunkName: "create-obc" */).then(
           (m) => m.CreateSNSPage,
@@ -129,13 +98,6 @@ const plugin: Plugin<ConsumedExtensions> = [
         ),
     },
   },
-  // {
-  //   type: 'console.yaml-template',
-  //   properties: {
-  //     model: models.UpdatequotaModel,
-  //     template: yamlTemplates.getIn([models.UpdatequotaModel, 'default']),
-  //   },
-  // },
   {
     type: 'Page/Route',
     properties: {

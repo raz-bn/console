@@ -1,0 +1,34 @@
+apiVersion: dana.hns.io/v1
+kind: Subnamespace
+metadata:
+  name: parent
+  namespace: root
+  labels:
+    dana.hns.io/resourcepool: 'false'
+spec:
+  namespaceRef:
+    name: parent
+  resourcequota:
+    hard:
+      cpu: '1000'
+      memory: 800Gi
+      pods: 1000
+
+---
+apiVersion: dana.hns.io/v1
+kind: Subnamespace
+metadata:
+  name: child
+  namespace: parent
+  labels:
+    dana.hns.io/resourcepool: 'false'
+spec:
+  namespaceRef:
+    name: child
+  resourcequota:
+    hard:
+      cpu: '100'
+      memory: 80Gi
+      pods: 100
+      
+      

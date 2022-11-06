@@ -1,0 +1,63 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: 'root'
+  annotation:
+    dana.hns.io/role: 'root'
+    openshift.io/display-name: root
+    dna.hns.io/crq-selector-0: root
+    dana.hns.io/depth: '0'
+  labels:
+    dana.hns.io/role: 'root'
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: 'parent'
+  annotation:
+    dana.hns.io/role: none
+    openshift.io/display-name: root/parent
+    dna.hns.io/crq-selector-0: root
+    dna.hns.io/crq-selector-1: parent
+    dana.hns.io/depth: '1'
+    dana.hns.io/sns-pointer: 'parent'
+  labels:
+    dana.hns.io/parent: 'root'
+    dana.hns.io/role: none
+    dana.hns.io/subnamespace: 'true'
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: 'child'
+  annotation:
+    dana.hns.io/role: 'leaf'
+    openshift.io/display-name: root/parent/child
+    dna.hns.io/crq-selector-0: root
+    dna.hns.io/crq-selector-1: parent
+    dna.hns.io/crq-selector-2: child
+    dana.hns.io/depth: '2'
+    dana.hns.io/sns-pointer: 'child'
+  labels:
+    dana.hns.io/parent: 'parent'
+    dana.hns.io/role: 'leaf'
+    dana.hns.io/subnamespace: 'true'
+
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: 'childchild'
+  annotation:
+    dana.hns.io/role: 'leaf'
+    openshift.io/display-name: root/parent/child
+    dna.hns.io/crq-selector-0: root
+    dna.hns.io/crq-selector-1: parent
+    dna.hns.io/crq-selector-2: child
+    dna.hns.io/crq-selector-3: childchild
+    dana.hns.io/depth: '3'
+    dana.hns.io/sns-pointer: 'childchild'
+  labels:
+    dana.hns.io/parent: 'child'
+    dana.hns.io/role: 'leaf'
+    dana.hns.io/subnamespace: 'true'
